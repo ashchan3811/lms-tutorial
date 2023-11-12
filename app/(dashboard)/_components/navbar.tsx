@@ -1,4 +1,4 @@
-import NavbarRoutes from '@/components/narbar-routes';
+import NavbarRoutes from '@/components/navbar-routes';
 import MobileSidebar from "./mobile-sidebar";
 
 

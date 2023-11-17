@@ -9,18 +9,16 @@ import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Pencil } from "lucide-react";
+import { Course } from "@prisma/client";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -31,9 +29,7 @@ const formSchema = z.object({
 type TitleFormType = z.infer<typeof formSchema>;
 
 interface TitleFormProps {
-  initialData: {
-    title: string;
-  };
+  initialData: Course;
   courseId: string;
 }
 

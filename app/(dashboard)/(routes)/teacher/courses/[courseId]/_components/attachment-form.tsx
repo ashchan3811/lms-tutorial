@@ -7,8 +7,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { File, ImageIcon, Loader2, PlusCircle, X } from "lucide-react";
-import Image from "next/image";
+import { File, Loader2, PlusCircle, X } from "lucide-react";
 import { FileUpload } from "@/components/file-upload";
 import { Attachment, Course } from "@prisma/client";
 

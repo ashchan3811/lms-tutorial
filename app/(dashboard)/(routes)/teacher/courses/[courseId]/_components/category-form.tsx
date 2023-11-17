@@ -18,9 +18,9 @@ import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Pencil } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
 import { IComboBoxOptionItem } from "@/lib/models";
 import { ComboBox } from "@/components/ui/combobox";
+import { Course } from "@prisma/client";
 
 const formSchema = z.object({
   categoryId: z.string().min(1),
@@ -29,9 +29,7 @@ const formSchema = z.object({
 type CategoryFormType = z.infer<typeof formSchema>;
 
 interface CategoryFormProps {
-  initialData: {
-    categoryId: string | null;
-  };
+  initialData: Course;
   courseId: string;
   options: Array<IComboBoxOptionItem>;
 }

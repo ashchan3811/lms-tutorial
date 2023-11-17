@@ -20,6 +20,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { Pencil } from "lucide-react";
 import { formatPrice } from "@/lib/format-price";
+import { Course } from "@prisma/client";
 
 const formSchema = z.object({
   price: z.coerce.number().nonnegative(),
@@ -28,9 +29,7 @@ const formSchema = z.object({
 type PriceFormType = z.infer<typeof formSchema>;
 
 interface PriceFormProps {
-  initialData: {
-    price: number | null;
-  };
+  initialData: Course;
   courseId: string;
 }
 

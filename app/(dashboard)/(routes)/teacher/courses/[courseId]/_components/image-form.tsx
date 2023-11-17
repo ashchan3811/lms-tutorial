@@ -9,11 +9,10 @@ import { useState } from "react";
 import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
 import Image from "next/image";
 import { FileUpload } from "@/components/file-upload";
+import { Course } from "@prisma/client";
 
 interface ImageFormProps {
-  initialData: {
-    imageUrl: string | null;
-  };
+  initialData: Course;
   courseId: string;
 }
 

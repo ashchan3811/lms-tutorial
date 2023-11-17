@@ -100,7 +100,7 @@ const CourseDetailPage = async ({
               <IconBadge icon={ListChecks} />
               <h2 className='text-sl'>Course chapters</h2>
             </div>
-            <div>TODO: Chapters</div>
+            <DescriptionForm initialData={course} courseId={course.id} />
           </div>
           <div>
             <div className='flex items-center gap-x-2'>

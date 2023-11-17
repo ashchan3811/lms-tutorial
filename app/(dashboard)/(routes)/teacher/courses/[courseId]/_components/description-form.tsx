@@ -10,19 +10,16 @@ import { cn } from "@/lib/utils";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Pencil } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { Course } from "@prisma/client";
 
 const formSchema = z.object({
   description: z.string().min(1, {
@@ -33,9 +30,7 @@ const formSchema = z.object({
 type DescriptionFormType = z.infer<typeof formSchema>;
 
 interface DescriptionFormProps {
-  initialData: {
-    description: string | null;
-  };
+  initialData: Course;
   courseId: string;
 }
 

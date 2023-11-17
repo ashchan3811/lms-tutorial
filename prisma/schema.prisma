@@ -22,7 +22,7 @@ model Course {
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
 
-  chapter     Chapter[]
+  chapters    Chapter[]
   attachments Attachment[]
   purchases   Purchase[]
 
@@ -56,7 +56,7 @@ model Chapter {
   id          String  @id @default(uuid())
   title       String
   description String?
-  videoUrl    String
+  videoUrl    String?
   position    Int
   isPublished Boolean @default(false)
   isFree      Boolean @default(false)

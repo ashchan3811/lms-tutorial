@@ -102,6 +102,7 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
                       disabled={isSubmitting}
                       placeholder='e.g this course is about....'
                       {...field}
+                      rows={8}
                     />
                   </FormControl>
                   <FormMessage />

@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { ICourseAttachmentParams } from "@/lib/models";
+import { isTeacher } from "@/lib/teacher";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
@@ -10,7 +11,7 @@ export async function DELETE(
   try {
     const { userId } = auth();
 
-    if (!userId) {
+    if (!userId || !isTeacher(userId)) {
       return new NextResponse("unauthorized", { status: 401 });
     }
 

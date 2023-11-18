@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn(filterColumn)?.setFilterValue(event.target.value)
           }
-          className="max-w-md"
+          className="max-w-sm"
         />
         {headerAction && headerAction}
       </div>

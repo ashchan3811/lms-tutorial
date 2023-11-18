@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 import { MuxVideo } from "@/lib/mux";
+import { isTeacher } from "@/lib/teacher";
 
 interface IPatchParams {
   params: { courseId: string };
@@ -13,7 +14,7 @@ export async function PATCH(req: Request, { params }: IPatchParams) {
     const { userId } = auth();
     const { courseId } = params;
 
-    if (!userId) {
+    if (!userId || !isTeacher(userId)) {
       return new NextResponse("Unauthorised", { status: 401 });
     }
 
@@ -41,7 +42,7 @@ export async function DELETE(req: Request, { params }: IPatchParams) {
     const { userId } = auth();
     const { courseId } = params;
 
-    if (!userId) {
+    if (!userId || !isTeacher(userId)) {
       return new NextResponse("Unauthorised", { status: 401 });
     }
 

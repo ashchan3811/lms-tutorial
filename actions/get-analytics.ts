@@ -13,9 +13,9 @@ const groupByCourse = (purchases: PurchaseWithCourse[]) => {
 
     if (!grouped[courseTitle]) {
       grouped[courseTitle] = 0;
-    } else {
-      grouped[courseTitle] += purchase.course.price || 0;
     }
+
+    grouped[courseTitle] += purchase.course.price || 0;
   });
 
   return grouped;
@@ -33,6 +33,7 @@ export const getAnalytics = async (userId: string) => {
     });
 
     const groupedEarnings = groupByCourse(purchases);
+
     const data = Object.entries(groupedEarnings).map(
       ([courseTitle, earning]) => {
         return {

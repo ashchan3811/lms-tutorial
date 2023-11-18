@@ -5,15 +5,12 @@ import Mux from "@mux/mux-node";
 
 import { db } from "@/lib/db";
 import { RESPONSE } from "@/lib/api";
+import { IChapterParams } from "@/lib/models";
 
 const { Video } = new Mux(
   process.env.MUX_TOKEN_ID!,
   process.env.MUX_TOKEN_SECRET!
 );
-
-interface IChapterParams {
-  params: { courseId: string; chapterId: string };
-}
 
 export async function PATCH(req: Request, { params }: IChapterParams) {
   try {

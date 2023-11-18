@@ -7,3 +7,7 @@ export interface IChapterReOrderItem {
   id: string;
   position: number;
 }
+
+export interface IChapterParams {
+  params: { courseId: string; chapterId: string };
+}

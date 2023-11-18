@@ -11,11 +11,11 @@ const { Video } = new Mux(
   process.env.MUX_TOKEN_SECRET!
 );
 
-interface IPatchParams {
+interface IChapterParams {
   params: { courseId: string; chapterId: string };
 }
 
-export async function PATCH(req: Request, { params }: IPatchParams) {
+export async function PATCH(req: Request, { params }: IChapterParams) {
   try {
     const { userId } = auth();
 
@@ -80,6 +80,86 @@ export async function PATCH(req: Request, { params }: IPatchParams) {
     return NextResponse.json(chapter);
   } catch (err) {
     console.log("PATCH COURSE_ID CHAPTER_ID", { err });
+    return RESPONSE.INTERNAL_SERVER_ERROR;
+  }
+}
+
+export async function DELETE(req: Request, { params }: IChapterParams) {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      return RESPONSE.UNAUTHOZED;
+    }
+
+    const course = await db.course.findUnique({
+      where: {
+        id: params.courseId,
+        userId,
+      },
+    });
+
+    if (!course) {
+      return RESPONSE.UNAUTHOZED;
+    }
+
+    const chapter = await db.chapter.findUnique({
+      where: {
+        id: params.chapterId,
+        courseId: params.courseId,
+      },
+    });
+
+    if (!chapter) {
+      return new NextResponse("Not found", { status: 404 });
+    }
+
+    if (chapter.videoUrl) {
+      const existingMuxData = await db.muxData.findFirst({
+        where: {
+          chapterId: params.chapterId,
+        },
+      });
+
+      if (existingMuxData) {
+        await Video.Assets.del(existingMuxData.assetId);
+        await db.muxData.delete({
+          where: {
+            id: existingMuxData.id,
+          },
+        });
+      }
+    }
+
+    const deletedChapter = await db.chapter.delete({
+      where: {
+        id: params.chapterId,
+        courseId: params.courseId,
+      },
+    });
+
+    const publishedChaptersInCourse = await db.chapter.findMany({
+      where: {
+        courseId: params.courseId,
+        isPublished: true,
+      },
+    });
+
+    if (!publishedChaptersInCourse?.length) {
+      await db.course.update({
+        where: {
+          id: params.courseId,
+          userId,
+        },
+        data: {
+          isPublished: false,
+        },
+      });
+    }
+
+    return NextResponse.json(deletedChapter);
+  } catch (err) {
+    console.log("DELETE COURSE_ID CHAPTER_ID", { err });
     return RESPONSE.INTERNAL_SERVER_ERROR;
   }
 }

@@ -1,3 +1,5 @@
+import { Category, Course } from "@prisma/client";
+
 export interface IComboBoxOptionItem {
   value: string;
   label: string;
@@ -19,3 +21,15 @@ export interface ICourseParams {
 export interface ICourseAttachmentParams {
   params: { courseId: string; attachmentId: string };
 }
+
+export type CourseWithProgressWithCategory = Course & {
+  category: Category | null;
+  chapters: { id: string }[];
+  progress: number | null;
+};
+
+export type GetCoursesParams = {
+  userId: string;
+  title?: string;
+  categoryId?: string;
+};

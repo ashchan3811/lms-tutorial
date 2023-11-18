@@ -14,7 +14,7 @@ const bannerVariants = cva(
     defaultVariants: {
       variant: "warning",
     },
-  }
+  },
 );
 
 interface BannerProps extends VariantProps<typeof bannerVariants> {
@@ -31,7 +31,7 @@ const Banner = ({ label, variant }: BannerProps) => {
 
   return (
     <div className={cn(bannerVariants({ variant }))}>
-      <Icon className='w-4 h-4 mr-2' />
+      <Icon className="w-4 h-4 mr-2" />
       {label}
     </div>
   );

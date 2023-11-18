@@ -2,7 +2,6 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
-import { RESPONSE } from "@/lib/api";
 import { ICourseParams } from "@/lib/models";
 
 export async function PATCH(req: Request, { params }: ICourseParams) {
@@ -10,7 +9,7 @@ export async function PATCH(req: Request, { params }: ICourseParams) {
     const { userId } = auth();
 
     if (!userId) {
-      return RESPONSE.UNAUTHOZED;
+      return new NextResponse("Unauthorized", { status: 401 });
     }
 
     const course = await db.course.findUnique({
@@ -18,20 +17,24 @@ export async function PATCH(req: Request, { params }: ICourseParams) {
         id: params.courseId,
         userId,
       },
-    });
-
-    if (!course) {
-      return RESPONSE.UNAUTHOZED;
-    }
-
-    const pubishedChapters = await db.chapter.findMany({
-      where: {
-        courseId: params.courseId,
-        isPublished: true,
+      include: {
+        chapters: true,
       },
     });
 
-    if (!pubishedChapters?.length) {
+    if (!course) {
+      return new NextResponse("Not found", { status: 406 });
+    }
+
+    const hasPublishedChapter = course.chapters.some((a) => a.isPublished);
+
+    if (
+      !course.title ||
+      !course.description ||
+      !course.imageUrl ||
+      !course.categoryId ||
+      !hasPublishedChapter
+    ) {
       return new NextResponse("Missing required data", { status: 406 });
     }
 
@@ -48,6 +51,8 @@ export async function PATCH(req: Request, { params }: ICourseParams) {
     return NextResponse.json(publishedCourse);
   } catch (err) {
     console.log("PUBLISH COURSE_ID", { err });
-    return RESPONSE.INTERNAL_SERVER_ERROR;
+    return new NextResponse("Internal Server Error", {
+      status: 500,
+    });
   }
 }

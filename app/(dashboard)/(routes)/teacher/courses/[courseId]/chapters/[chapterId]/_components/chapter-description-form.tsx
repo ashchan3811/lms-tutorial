@@ -59,7 +59,7 @@ const ChapterDescriptionForm = ({
     try {
       await axios.patch(
         `/api/courses/${courseId}/chapters/${chapterId}`,
-        values
+        values,
       );
       toast.success("Chapter updated");
       router.refresh();
@@ -70,13 +70,13 @@ const ChapterDescriptionForm = ({
   };
 
   return (
-    <div className='mt-6 border bg-slate-100 rounded-md p-4'>
-      <div className='font-medium flex items-center justify-between'>
+    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+      <div className="font-medium flex items-center justify-between">
         Chapter Description
         <Button variant={"ghost"} onClick={toggleEdit}>
           {!isEditing ? (
             <>
-              <Pencil className='h-4 w-4 mr-2' />
+              <Pencil className="h-4 w-4 mr-2" />
               Edit Description
             </>
           ) : (
@@ -88,7 +88,7 @@ const ChapterDescriptionForm = ({
         <div
           className={cn(
             "text-sm mt-2",
-            !initialData.description && "text-slate-500 italic"
+            !initialData.description && "text-slate-500 italic",
           )}
         >
           {initialData.description ? (
@@ -103,11 +103,11 @@ const ChapterDescriptionForm = ({
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-4 mt-4'
+            className="space-y-4 mt-4"
           >
             <FormField
               control={form.control}
-              name='description'
+              name="description"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -117,8 +117,8 @@ const ChapterDescriptionForm = ({
                 </FormItem>
               )}
             />
-            <div className='flex items-center gap-x-2'>
-              <Button disabled={!isValid || isSubmitting} type='submit'>
+            <div className="flex items-center gap-x-2">
+              <Button disabled={!isValid || isSubmitting} type="submit">
                 Save
               </Button>
             </div>

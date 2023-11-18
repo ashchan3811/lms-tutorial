@@ -86,18 +86,18 @@ const ChapterForms = ({ initialData, courseId }: ChapterFormsProps) => {
   };
 
   return (
-    <div className='relative mt-6 border bg-slate-100 rounded-md p-4'>
+    <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
       {isUpdating && (
-        <div className='absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center'>
-          <Loader2 className='h-6 w-6 animate-spin text-sky-700' />
+        <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
+          <Loader2 className="h-6 w-6 animate-spin text-sky-700" />
         </div>
       )}
-      <div className='font-medium flex items-center justify-between'>
+      <div className="font-medium flex items-center justify-between">
         Course chapters
         <Button variant={"ghost"} onClick={toggleCreate}>
           {!isCreating ? (
             <>
-              <PlusCircle className='h-4 w-4 mr-2' />
+              <PlusCircle className="h-4 w-4 mr-2" />
               Add a chapter
             </>
           ) : (
@@ -109,17 +109,17 @@ const ChapterForms = ({ initialData, courseId }: ChapterFormsProps) => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-4 mt-4'
+            className="space-y-4 mt-4"
           >
             <FormField
               control={form.control}
-              name='title'
+              name="title"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder='e.g intro to the course'
+                      placeholder="e.g intro to the course"
                       {...field}
                     />
                   </FormControl>
@@ -127,7 +127,7 @@ const ChapterForms = ({ initialData, courseId }: ChapterFormsProps) => {
                 </FormItem>
               )}
             />
-            <Button disabled={!isValid || isSubmitting} type='submit'>
+            <Button disabled={!isValid || isSubmitting} type="submit">
               Create
             </Button>
           </form>
@@ -138,7 +138,7 @@ const ChapterForms = ({ initialData, courseId }: ChapterFormsProps) => {
         <div
           className={cn(
             "text-sm mt-2",
-            !initialData.chapters.length && "text-slate-500 italic"
+            !initialData.chapters.length && "text-slate-500 italic",
           )}
         >
           {!initialData.chapters.length ? (
@@ -156,7 +156,7 @@ const ChapterForms = ({ initialData, courseId }: ChapterFormsProps) => {
       )}
 
       {!isCreating && initialData.chapters.length > 0 && (
-        <p className='text-xs text-muted-foreground mt-4'>
+        <p className="text-xs text-muted-foreground mt-4">
           Drag ad drop to reorder the chapters
         </p>
       )}

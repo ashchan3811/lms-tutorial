@@ -55,13 +55,13 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
   };
 
   return (
-    <div className='mt-6 border bg-slate-100 rounded-md p-4'>
-      <div className='font-medium flex items-center justify-between'>
+    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+      <div className="font-medium flex items-center justify-between">
         Course attachments
         <Button variant={"ghost"} onClick={toggleEdit}>
           {!isEditing ? (
             <>
-              <PlusCircle className='h-4 w-4 mr-2' />
+              <PlusCircle className="h-4 w-4 mr-2" />
               Add a file
             </>
           ) : (
@@ -72,31 +72,31 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
       {!isEditing && (
         <>
           {!initialData.attachments?.length ? (
-            <p className='text-sm mt-2 text-slate-500 italic'>
+            <p className="text-sm mt-2 text-slate-500 italic">
               No attachments yet
             </p>
           ) : (
-            <div className='space-y-2'>
+            <div className="space-y-2">
               {initialData.attachments.map((attachment) => (
                 <div
                   key={attachment.id}
-                  className='flex items-center p-3 w-full bg-sky-100 text-sky-700 rounded-md'
+                  className="flex items-center p-3 w-full bg-sky-100 text-sky-700 rounded-md"
                 >
-                  <File className='h-4 w-4 mr-2 flex-shrink-0' />
-                  <p className='text-xs line-clamp-1'>{attachment.name}</p>
+                  <File className="h-4 w-4 mr-2 flex-shrink-0" />
+                  <p className="text-xs line-clamp-1">{attachment.name}</p>
 
                   {deletingId === attachment.id ? (
                     <div>
-                      <Loader2 className='h-4 w-4 animate-spin' />
+                      <Loader2 className="h-4 w-4 animate-spin" />
                     </div>
                   ) : (
                     <button
-                      className='ml-auto hover:opacity-75 transition'
+                      className="ml-auto hover:opacity-75 transition"
                       onClick={() => {
                         onDelete(attachment.id);
                       }}
                     >
-                      <X className='h-4 w-4' />
+                      <X className="h-4 w-4" />
                     </button>
                   )}
                 </div>
@@ -114,7 +114,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
               url && onSubmit({ url: url });
             }}
           />
-          <div className='text-xs text-muted-foreground mt-4'>
+          <div className="text-xs text-muted-foreground mt-4">
             Add anything your student might need to complete the course.
           </div>
         </div>

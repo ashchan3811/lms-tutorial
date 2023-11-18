@@ -31,12 +31,12 @@ const ChapterActions = ({
 
       if (isPublished) {
         await axios.patch(
-          `/api/courses/${courseId}/chapters/${chapterId}/unpublish`
+          `/api/courses/${courseId}/chapters/${chapterId}/unpublish`,
         );
         toast.success("Chapter unpublished");
       } else {
         await axios.patch(
-          `/api/courses/${courseId}/chapters/${chapterId}/publish`
+          `/api/courses/${courseId}/chapters/${chapterId}/publish`,
         );
         toast.success("Chapter published");
       }
@@ -68,7 +68,7 @@ const ChapterActions = ({
   };
 
   return (
-    <div className='flex items-center gap-x-2'>
+    <div className="flex items-center gap-x-2">
       <Button
         onClick={onPublish}
         disabled={disabled || isLoading}
@@ -77,9 +77,9 @@ const ChapterActions = ({
       >
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
-      <ConfirmModal onConfirm={onDelete} continueText='Yes' cancelText='No'>
+      <ConfirmModal onConfirm={onDelete} continueText="Yes" cancelText="No">
         <Button size={"sm"} variant={"destructive"} disabled={isLoading}>
-          <Trash className='h-4 w-4' />
+          <Trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>
     </div>

@@ -2,7 +2,6 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
-import { RESPONSE } from "@/lib/api";
 import { ICourseParams } from "@/lib/models";
 
 export async function PATCH(req: Request, { params }: ICourseParams) {
@@ -10,7 +9,7 @@ export async function PATCH(req: Request, { params }: ICourseParams) {
     const { userId } = auth();
 
     if (!userId) {
-      return RESPONSE.UNAUTHOZED;
+      return new NextResponse("Unauthorized", { status: 401 });
     }
 
     const course = await db.course.findUnique({
@@ -21,7 +20,7 @@ export async function PATCH(req: Request, { params }: ICourseParams) {
     });
 
     if (!course) {
-      return RESPONSE.UNAUTHOZED;
+      return new NextResponse("Unauthorized", { status: 401 });
     }
 
     const unPublishedCourse = await db.course.update({
@@ -36,6 +35,8 @@ export async function PATCH(req: Request, { params }: ICourseParams) {
     return NextResponse.json(unPublishedCourse);
   } catch (err) {
     console.log("UN PUBLISH COURSE_ID", { err });
-    return RESPONSE.INTERNAL_SERVER_ERROR;
+    return new NextResponse("Internal Server Error", {
+      status: 500,
+    });
   }
 }

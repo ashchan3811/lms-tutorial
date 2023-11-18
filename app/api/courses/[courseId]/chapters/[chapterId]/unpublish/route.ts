@@ -2,7 +2,6 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
-import { RESPONSE } from "@/lib/api";
 import { IChapterParams } from "@/lib/models";
 
 export async function PATCH(req: Request, { params }: IChapterParams) {
@@ -10,7 +9,7 @@ export async function PATCH(req: Request, { params }: IChapterParams) {
     const { userId } = auth();
 
     if (!userId) {
-      return RESPONSE.UNAUTHOZED;
+      return new NextResponse("Unauthorized", { status: 401 });
     }
 
     const course = await db.course.findUnique({
@@ -21,7 +20,7 @@ export async function PATCH(req: Request, { params }: IChapterParams) {
     });
 
     if (!course) {
-      return RESPONSE.UNAUTHOZED;
+      return new NextResponse("Unauthorized", { status: 401 });
     }
 
     const chapter = await db.chapter.findUnique({
@@ -67,6 +66,8 @@ export async function PATCH(req: Request, { params }: IChapterParams) {
     return NextResponse.json(unPublishedChapter);
   } catch (err) {
     console.log("UN PUBLISH COURSE_ID CHAPTER_ID", { err });
-    return RESPONSE.INTERNAL_SERVER_ERROR;
+    return new NextResponse("Internal Server Error", {
+      status: 500,
+    });
   }
 }

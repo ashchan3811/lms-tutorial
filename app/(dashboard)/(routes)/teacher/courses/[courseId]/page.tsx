@@ -69,11 +69,11 @@ const CourseDetailPage = async ({ params }: ICourseParams) => {
   const isCompleted = totalFields === completedFields;
 
   return (
-    <div className='p-6'>
-      <div className='flex items-center justify-between'>
-        <div className='flex flex-col gap-y-2'>
-          <h1 className='text-2xl font-medium'>Course Setup</h1>
-          <span className='text-sm text-slate-700'>
+    <div className="p-6">
+      <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-y-2">
+          <h1 className="text-2xl font-medium">Course Setup</h1>
+          <span className="text-sm text-slate-700">
             Complete all fields {completedText}
           </span>
         </div>
@@ -83,11 +83,11 @@ const CourseDetailPage = async ({ params }: ICourseParams) => {
           courseId={course.id}
         />
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-16'>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
         <div>
-          <div className='flex items-center gap-x-2'>
+          <div className="flex items-center gap-x-2">
             <IconBadge icon={LayoutDashboard} />
-            <h2 className='text-xl'>Customize your course</h2>
+            <h2 className="text-xl">Customize your course</h2>
           </div>
           <TitleForm initialData={course} courseId={course.id} />
 
@@ -104,25 +104,25 @@ const CourseDetailPage = async ({ params }: ICourseParams) => {
             }))}
           />
         </div>
-        <div className='space-y-6'>
+        <div className="space-y-6">
           <div>
-            <div className='flex items-center gap-x-2'>
+            <div className="flex items-center gap-x-2">
               <IconBadge icon={ListChecks} />
-              <h2 className='text-sl'>Course chapters</h2>
+              <h2 className="text-sl">Course chapters</h2>
             </div>
             <ChapterForms initialData={course} courseId={course.id} />
           </div>
           <div>
-            <div className='flex items-center gap-x-2'>
+            <div className="flex items-center gap-x-2">
               <IconBadge icon={CircleDollarSign} />
-              <h2 className='text-sl'>Sell your course</h2>
+              <h2 className="text-sl">Sell your course</h2>
             </div>
             <PriceForm initialData={course} courseId={course.id} />
           </div>
           <div>
-            <div className='flex items-center gap-x-2'>
+            <div className="flex items-center gap-x-2">
               <IconBadge icon={File} />
-              <h2 className='text-sl'>Resource & Attachments</h2>
+              <h2 className="text-sl">Resource & Attachments</h2>
             </div>
             <AttachmentForm initialData={course} courseId={course.id} />
           </div>

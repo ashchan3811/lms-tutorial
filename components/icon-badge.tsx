@@ -20,7 +20,7 @@ const backgroundVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const iconVariants = cva("", {

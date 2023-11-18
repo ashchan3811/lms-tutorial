@@ -51,14 +51,14 @@ const CourseSidebarItem = ({
           )}
         />
         {label}
-        <div
-          className={cn(
-            "ml-auto opacity-0 border-2 border-slate-700 h-full transition-all",
-            isActive && "opacity-100",
-            isCompleted && "border-emerald-700",
-          )}
-        ></div>
       </div>
+      <div
+        className={cn(
+          "ml-auto opacity-0 border-2 border-slate-700 h-full transition-all",
+          isActive && "opacity-100",
+          isCompleted && "border-emerald-700",
+        )}
+      ></div>
     </button>
   );
 };

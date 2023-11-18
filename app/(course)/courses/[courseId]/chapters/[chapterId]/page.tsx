@@ -1,5 +1,5 @@
-const ChapterPage = () => {
-  return <p>chapter page</p>;
+const ChapterIdPage = () => {
+  return <p>ChapterIdPage</p>;
 };
 
-export default ChapterPage;
+export default ChapterIdPage;

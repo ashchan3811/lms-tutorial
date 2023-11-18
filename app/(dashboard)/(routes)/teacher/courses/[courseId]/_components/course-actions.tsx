@@ -28,10 +28,10 @@ const CourseActions = ({
       setIsLoading(true);
 
       if (isPublished) {
-        await axios.patch(`/api/courses/${courseId}/chapters/unpublish`);
+        await axios.patch(`/api/courses/${courseId}/unpublish`);
         toast.success("Course unpublished");
       } else {
-        await axios.patch(`/api/courses/${courseId}/chapters/publish`);
+        await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published");
       }
 

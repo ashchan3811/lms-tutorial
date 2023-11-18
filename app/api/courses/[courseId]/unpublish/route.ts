@@ -20,7 +20,7 @@ export async function PATCH(req: Request, { params }: ICourseParams) {
     });
 
     if (!course) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse("Not found", { status: 404 });
     }
 
     const unPublishedCourse = await db.course.update({

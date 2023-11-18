@@ -35,7 +35,10 @@ const ChapterIdPage = async ({ params }: IChapterParams) => {
   return (
     <div>
       {userProgress?.isCompleted && (
-        <Banner variant={"success"} label="You already completed this course" />
+        <Banner
+          variant={"success"}
+          label="You already completed this chapter"
+        />
       )}
 
       {isLocked && (

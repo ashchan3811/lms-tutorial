@@ -38,7 +38,7 @@ export async function POST(req: Request, { params }: ICourseParams) {
       data: {
         title,
         courseId: params.courseId,
-        position: newPosition,
+        position: newPosition + 1,
       },
     });
 

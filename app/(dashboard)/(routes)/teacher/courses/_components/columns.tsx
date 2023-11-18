@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/lib/format-price";
 import { Course } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
@@ -15,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
+import PriceDisplay from "@/components/price-display";
 
 export const columns: ColumnDef<Course>[] = [
   {
@@ -24,6 +24,7 @@ export const columns: ColumnDef<Course>[] = [
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="p-0"
         >
           Title
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -38,6 +39,7 @@ export const columns: ColumnDef<Course>[] = [
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="p-0"
         >
           Price
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -45,9 +47,8 @@ export const columns: ColumnDef<Course>[] = [
       );
     },
     cell: ({ row }) => {
-      return (
-        <Badge variant={"primary"}>{formatPrice(row.getValue("price"))}</Badge>
-      );
+      const { price } = row.original;
+      return <PriceDisplay price={price} />;
     },
   },
   {
@@ -57,6 +58,7 @@ export const columns: ColumnDef<Course>[] = [
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="p-0"
         >
           Published
           <ArrowUpDown className="ml-2 h-4 w-4" />

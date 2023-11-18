@@ -15,6 +15,7 @@ import CategoryForm from "./_components/category-form";
 import PriceForm from "./_components/price-form";
 import AttachmentForm from "./_components/attachment-form";
 import ChapterForms from "./_components/chapters-form";
+import CourseActions from "./_components/course-actions";
 
 const CourseDetailPage = async ({
   params,
@@ -70,6 +71,7 @@ const CourseDetailPage = async ({
   const completedFields = requiredFields.filter(Boolean).length;
 
   const completedText = `(${completedFields}/${totalFields})`;
+  const isCompleted = totalFields === completedFields;
 
   return (
     <div className='p-6'>
@@ -80,6 +82,11 @@ const CourseDetailPage = async ({
             Complete all fields {completedText}
           </span>
         </div>
+        <CourseActions
+          isPublished={course.isPublished}
+          disabled={!isCompleted}
+          courseId={course.id}
+        />
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-16'>
         <div>

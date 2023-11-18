@@ -2,15 +2,9 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
+import { ICourseParams } from "@/lib/models";
 
-export async function PUT(
-  req: Request,
-  {
-    params,
-  }: {
-    params: { courseId: string };
-  }
-) {
+export async function PUT(req: Request, { params }: ICourseParams) {
   try {
     const { userId } = auth();
 

@@ -1,14 +1,11 @@
 import { db } from "@/lib/db";
+import { ICourseAttachmentParams } from "@/lib/models";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function DELETE(
   req: Request,
-  {
-    params,
-  }: {
-    params: { courseId: string; attachmentId: string };
-  }
+  { params }: ICourseAttachmentParams
 ) {
   try {
     const { userId } = auth();

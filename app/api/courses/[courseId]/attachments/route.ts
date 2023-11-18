@@ -1,15 +1,9 @@
 import { db } from "@/lib/db";
+import { ICourseParams } from "@/lib/models";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-export async function POST(
-  req: Request,
-  {
-    params,
-  }: {
-    params: { courseId: string };
-  }
-) {
+export async function POST(req: Request, { params }: ICourseParams) {
   try {
     const { userId } = auth();
     const { url } = await req.json();

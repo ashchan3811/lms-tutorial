@@ -1,4 +1,4 @@
-import { Category, Course } from "@prisma/client";
+import { Category, Chapter, Course, UserProgress } from "@prisma/client";
 
 export interface IComboBoxOptionItem {
   value: string;
@@ -32,4 +32,8 @@ export type GetCoursesParams = {
   userId: string;
   title?: string;
   categoryId?: string;
+};
+
+export type CourseWithDetails = Course & {
+  chapters: Array<Chapter & { userProgress: UserProgress[] }>;
 };

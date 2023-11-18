@@ -24,6 +24,17 @@ export async function PATCH(req: Request, { params }: ICourseParams) {
       return RESPONSE.UNAUTHOZED;
     }
 
+    const pubishedChapters = await db.chapter.findMany({
+      where: {
+        courseId: params.courseId,
+        isPublished: true,
+      },
+    });
+
+    if (!pubishedChapters?.length) {
+      return new NextResponse("Missing required data", { status: 406 });
+    }
+
     const publishedCourse = await db.course.update({
       where: {
         id: params.courseId,

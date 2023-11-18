@@ -16,14 +16,9 @@ import PriceForm from "./_components/price-form";
 import AttachmentForm from "./_components/attachment-form";
 import ChapterForms from "./_components/chapters-form";
 import CourseActions from "./_components/course-actions";
+import { ICourseParams } from "@/lib/models";
 
-const CourseDetailPage = async ({
-  params,
-}: {
-  params: {
-    courseId: string;
-  };
-}) => {
+const CourseDetailPage = async ({ params }: ICourseParams) => {
   const { userId } = auth();
   if (!userId) {
     return redirect("/");

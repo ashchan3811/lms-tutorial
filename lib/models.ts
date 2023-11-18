@@ -35,5 +35,5 @@ export type GetCoursesParams = {
 };
 
 export type CourseWithDetails = Course & {
-  chapters: Array<Chapter & { userProgress: UserProgress[] }>;
+  chapters: Array<Chapter & { userProgress: UserProgress[] | null }>;
 };

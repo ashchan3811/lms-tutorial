@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const AddCourseButton = () => {
   return (
-    <Link href={"/teacher/create"}>
+    <Link href={"/teacher/create"} className="ml-2">
       <Button>
         <PlusCircleIcon className="h-4 w-4 mr-2" />
         New Course

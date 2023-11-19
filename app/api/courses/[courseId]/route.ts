@@ -4,12 +4,9 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { MuxVideo } from "@/lib/mux";
 import { isTeacher } from "@/lib/teacher";
+import { ICourseParams } from "@/lib/models";
 
-interface IPatchParams {
-  params: { courseId: string };
-}
-
-export async function PATCH(req: Request, { params }: IPatchParams) {
+export async function PATCH(req: Request, { params }: ICourseParams) {
   try {
     const { userId } = auth();
     const { courseId } = params;
@@ -37,7 +34,7 @@ export async function PATCH(req: Request, { params }: IPatchParams) {
   }
 }
 
-export async function DELETE(req: Request, { params }: IPatchParams) {
+export async function DELETE(req: Request, { params }: ICourseParams) {
   try {
     const { userId } = auth();
     const { courseId } = params;

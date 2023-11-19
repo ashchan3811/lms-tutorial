@@ -18,6 +18,10 @@ export interface ICourseParams {
   params: { courseId: string };
 }
 
+export interface ICategoryParams {
+  params: { categoryId: string };
+}
+
 export interface ICourseAttachmentParams {
   params: { courseId: string; attachmentId: string };
 }
@@ -37,3 +41,9 @@ export type GetCoursesParams = {
 export type CourseWithDetails = Course & {
   chapters: Array<Chapter & { userProgress: UserProgress[] | null }>;
 };
+
+export interface ITeacher {
+  id: string;
+  name: string;
+  email: string;
+}

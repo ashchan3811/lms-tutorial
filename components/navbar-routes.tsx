@@ -8,6 +8,7 @@ import Link from "next/link";
 import SearchInput from "./search-input";
 import { Button } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
+import { isAdmin } from '@/lib/is-admin';
 
 const NavbarRoutes = () => {
   const { userId } = useAuth();
@@ -34,13 +35,22 @@ const NavbarRoutes = () => {
             </Button>
           </Link>
         ) : (
-          isTeacher(userId) && (
-            <Link href={"/teacher/courses"}>
-              <Button size={"sm"} variant={"ghost"}>
-                Teacher Mode
-              </Button>
-            </Link>
-          )
+          <>
+            {isTeacher(userId) && (
+              <Link href={"/teacher/courses"}>
+                <Button size={"sm"} variant={"ghost"}>
+                  Teacher Mode
+                </Button>
+              </Link>
+            )}
+            {isAdmin(userId) && (
+              <Link href={"/admin"}>
+                <Button size={"sm"} variant={"ghost"}>
+                  Admin Mode
+                </Button>
+              </Link>
+            )}
+          </>
         )}
         <UserButton afterSignOutUrl="/" />
       </div>

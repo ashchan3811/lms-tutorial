@@ -60,3 +60,40 @@ export const getAnalytics = async (userId: string) => {
     };
   }
 };
+
+export const getOverAllAnalytics = async () => {
+  try {
+    const purchases = await db.purchase.findMany({
+      include: {
+        course: true,
+      },
+    });
+
+    const groupedEarnings = groupByCourse(purchases);
+
+    const data = Object.entries(groupedEarnings).map(
+      ([courseTitle, earning]) => {
+        return {
+          name: courseTitle,
+          total: earning,
+        };
+      },
+    );
+
+    const totalRevenue = data.reduce((acc, curr) => acc + curr.total, 0);
+    const totalSales = purchases.length;
+
+    return {
+      data,
+      totalRevenue,
+      totalSales,
+    };
+  } catch (err) {
+    console.log("GET_ANALYTICS", err);
+    return {
+      data: [],
+      totalRevenue: 0,
+      totalSales: 0,
+    };
+  }
+};

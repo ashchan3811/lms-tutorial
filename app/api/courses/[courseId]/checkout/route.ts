@@ -37,6 +37,16 @@ export async function POST(req: Request, { params }: ICourseParams) {
       return new NextResponse("Course already purchased", { status: 400 });
     }
 
+    if (!course.price) {
+      await db.purchase.create({
+        data: {
+          userId: user.id,
+          courseId: params.courseId,
+        },
+      });
+      return NextResponse.json({ success: true });
+    }
+
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
         quantity: 1,

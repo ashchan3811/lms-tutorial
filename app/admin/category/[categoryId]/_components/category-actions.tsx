@@ -27,9 +27,9 @@ const CategoryActions = ({ disabled, categoryId }: CategoryActionsProps) => {
 
       router.refresh();
       router.push(`/admin/category`);
-    } catch (err) {
+    } catch (err: any) {
       console.log("category delete error", err);
-      toast.error("Something went wrong");
+      toast.error(err?.response?.data || "Something went wrong");
     } finally {
       setIsLoading(false);
     }

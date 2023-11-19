@@ -1,8 +1,8 @@
 import { getAnalytics } from "@/actions/get-analytics";
+import DataCard from "@/components/data-card";
+import DataChart from "@/components/data-chart";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import DataCard from "./_components/data-card";
-import DataChart from "./_components/data-chart";
 
 const AnalyticsPage = async () => {
   const { userId } = auth();

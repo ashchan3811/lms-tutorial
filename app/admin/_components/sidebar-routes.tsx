@@ -2,9 +2,14 @@
 
 import AdminSidebarItem from "./sidebar-item";
 
-import { List, PersonStandingIcon } from "lucide-react";
+import { LayoutDashboard, List, PersonStandingIcon } from "lucide-react";
 
 const adminRoutes = [
+  {
+    icon: LayoutDashboard,
+    label: "Home Page",
+    href: "/",
+  },
   {
     icon: PersonStandingIcon,
     label: "Teachers",

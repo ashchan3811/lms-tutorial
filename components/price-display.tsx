@@ -13,7 +13,9 @@ const PriceDisplay = ({ price }: PriceDisplayProps) => {
       {price && price > 0 ? (
         formatPrice(price)
       ) : (
-        <Badge variant={"secondary"}>Free</Badge>
+        <Badge className="ml-1" variant={"secondary"}>
+          Free
+        </Badge>
       )}
     </>
   );

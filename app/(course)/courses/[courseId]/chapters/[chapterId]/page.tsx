@@ -41,10 +41,17 @@ const ChapterIdPage = async ({ params }: IChapterParams) => {
         />
       )}
 
-      {isLocked && (
+      {isLocked && course.price! > 0 && (
         <Banner
           variant={"warning"}
           label="You need to purchase this course to watch this chapter."
+        />
+      )}
+
+      {isLocked && !course.price && (
+        <Banner
+          variant={"warning"}
+          label="You need to enroll this course to watch this chapter."
         />
       )}
 
